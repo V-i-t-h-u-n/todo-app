@@ -41,59 +41,65 @@ const Todo = () => {
   };
 
   return (
-    <div>
-      <div className="row">
-        <div className="col-auto">
-          <input type="text" className="form-control" ref={todoInput} />
+    <div className="col text-center">
+      <h1>Todo Application</h1>
+      <div className="container">
+        <div className="row p-3 bg-secondary bg-gradient">
+          <div className="col-lm">
+            <input type="text" className="form-control " ref={todoInput} />
+          </div>
+          <div className="col-lm">
+            <button className="btn btn-success" onClick={handleAddTodo}>
+              ADD TODO
+            </button>
+          </div>
         </div>
-        <div className="col-auto">
-          <button className="btn btn-success" onClick={handleAddTodo}>
-            ADD TODO
-          </button>
-        </div>
-      </div>
 
-      <div className="row mt-3">
-        <div className="col-md-4">
-          <div className="card">
-            <ul className="list-group list-group-flush">
-              {todoState?.map((todo) => {
-                return (
-                  <li key={todo.id} className="list-group-item">
-                    {editId === todo.id
-                      ? visible && (
-                          <input
-                            type="text"
-                            className="form-control"
-                            ref={todoEditInput}
-                          />
-                        )
-                      : ""}
-
-                    {todo.title}
-                    <button
-                      type="button"
-                      className="btn btn-success"
-                      onClick={handleEditTodo.bind(
-                        this,
-                        todoEditInput,
-                        todo.id
-                      )}
-                    >
-                      {" "}
-                      {visible && todo.id === editId ? "Submit" : "Edit Todo"}
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={handleDeleteTodo.bind(this, todo.id)}
-                    >
-                      Delete Todo
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+        <div className="row mt-3 d-flex justify-content-center">
+          <div className="col-xl-3 ">
+            <div className="card">
+              <ul className="list-group list-group-flush ">
+                {todoState?.map((todo) => {
+                  return (
+                    <li key={todo.id} className="list-group-item">
+                      {editId === todo.id
+                        ? visible && (
+                            <input
+                              type="text"
+                              className="form-control"
+                              ref={todoEditInput}
+                            />
+                          )
+                        : ""}
+                      {todo.title}
+                      <div className="d-inline justify-content-end">
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          onClick={handleEditTodo.bind(
+                            this,
+                            todoEditInput,
+                            todo.id
+                          )}
+                        >
+                          {" "}
+                          {visible && todo.id === editId
+                            ? "Submit"
+                            : "Edit Todo"}
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={handleDeleteTodo.bind(this, todo.id)}
+                        >
+                          Delete Todo
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
